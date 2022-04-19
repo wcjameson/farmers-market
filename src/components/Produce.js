@@ -1,4 +1,5 @@
 import React from "react";
+import ProduceList from "./ProduceList"
 
 class Produce extends React.Component {
 
@@ -39,7 +40,9 @@ produceUpdate = (event) => {
         </form>
         <hr />
         <p>Month: {currentMonth.month}</p>
-        <p>Available Produce: {currentMonth.selection}</p> 
+        <ProduceList
+          list={currentMonth.selection}
+        />
       </React.Fragment>
     )
   }

@@ -3,25 +3,28 @@ import React from "react";
 class Schedule extends React.Component {
 
   constructor(props) {
-    super(props);
-    this.State = {
+    super(props); // Creates `props` variable that is constructed by 
+    // React.Component.constructor(props)
+    this.state = {
       dayOfWeek: "Monday"
     };
-
   }
 
-  render(props) {
-    // let currentWeekday = props.marketSchedule.find(x => x.day === "Monday");
-    // console.log(currentWeekday);
-    
-    
+  scheduleUpdate = (event) => {
+    this.setState( { dayOfWeek: event.currentTarget.value} );
+  }
+
+  render() {
+    const currentWeekday = this.props.marketSchedule.find(x => x.day === this.state.dayOfWeek);
+    console.log(currentWeekday);
+
     return (
       <React.Fragment>
-        <h1 class="display-6">Market Schedule</h1>
+        <h1 className="display-6">Market Schedule</h1>
         <hr />
         <form>
-          <label for="weekdays"><span class="text-lead">Choose a day of the week:</span></label>
-            <select class="form-control" id="weekdays" name="weekdays">
+          <label htmlFor="weekdays"><span className="text-lead">Choose a day of the week:</span></label>
+            <select onChange={this.scheduleUpdate} className="form-control" id="weekdays" name="weekdays">
               <option value="Monday">Monday</option>
               <option value="Tuesday">Tuesday</option>
               <option value="Wednesday">Wednesday</option>
@@ -32,11 +35,13 @@ class Schedule extends React.Component {
             </select>
         </form>
         <hr />
-        {/* <p>Day of the Week: {currentWeekday.day}</p> */}
+        <p>Day of the Week: {currentWeekday.day}</p>
+        <p>Market Location: {currentWeekday.location}</p>
+        <p>Vendor Booth: {currentWeekday.booth}</p>
+        <p>Hours: {currentWeekday.hours}</p>
       </React.Fragment>
     );
   }
-
 }
 
 export default Schedule;
